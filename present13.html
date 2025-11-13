@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Baby 💞</title>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: url('https://wallpaperaccess.com/full/10953049.jpg') no-repeat center center/cover;
+  position: relative;
+}
+#intro, #messages, #secondPage, #finalPage {
+  text-align: center;
+  width: 90%;
+  max-width: 440px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(0,0,0,0.7);
+  font-weight: bold;
+}
+#startBtn {
+  padding: 18px 30px;
+  font-size: 20px;
+  background: linear-gradient(135deg,#ff69b4,#fff);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(255,105,180,0.5);
+  margin-top: 20px;
+}
+#startBtn:active { transform: scale(0.97); }
+.msg {
+  margin: 12px 0;
+  font-weight: bold;
+  font-size: 20px;
+  display: none;
+  opacity: 0;
+  background: rgba(255, 105, 180, 0.3);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(255,105,180,0.5);
+  transition: opacity 1.5s ease-in;
+}
+#secondPage, #finalPage {
+  display: none;
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255,105,180,0.8);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.heartbeat {
+  animation: heartbeat 1s infinite;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1) translate(-50%, -50%); }
+  25% { transform: scale(1.08) translate(-50%, -50%); }
+  50% { transform: scale(1) translate(-50%, -50%); }
+  75% { transform: scale(1.08) translate(-50%, -50%); }
+}
+.floating-heart, .confetti-heart {
+  position: fixed;
+  font-size: 22px;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+  opacity: 0.95;
+}
+.confetti-heart {
+  animation: fall linear forwards;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-120vh) scale(0.5); opacity: 0; }
+}
+@keyframes fall {
+  0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+}
+.glitter {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: glitterMove 1.5s linear infinite;
+}
+@keyframes glitterMove {
+  0% {transform: translate(0,0) scale(1); opacity:1;}
+  100% {transform: translate(50px,-50px) scale(0.2); opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<div id="intro">
+  <p>baby 😏😳😁..get ready for some flirty lines which drives you crazy on me 😏😉🫣😁</p>
+  <button id="startBtn">Click here if you're ready to blush 😳💞</button>
+</div>
+
+<div id="messages">
+  <div class="msg">My only plan tonight is to make you blush nonstop 😏💗</div>
+  <div class="msg">I can’t wait to wrap you up in my arms 😳😉</div>
+  <div class="msg">I need you here so I can make you smile all evening 😘💞</div>
+  <div class="msg">I’m feeling cheeky, and you’re the perfect partner-in-crime 😏💗</div>
+  <div class="msg">You should be here already, I’m counting down for your hug 😳💖</div>
+  <div class="msg">I can't concentrate on anything, and it's 100% your fault 😉😏😁</div>
+  <div class="msg">Are your parents bakers? Because you're a cutie pie 😉😁🤭🤌</div>
+  <div class="msg">I should complain to Spotify for not making you this week's hottest single 😏😉🤭😁</div>
+</div>
+
+<div id="secondPage" class="heartbeat">
+  I LOVE YOU SO MUCH BABYYYY 😭💖💞…<br>can't wait to hug you, steal all your smiles 😏💗😉
+</div>
+
+<div id="finalPage" class="heartbeat">
+  THANK YOU FOR CHOOSING ME AS UR MAN…<br>BAYEEEEEEEEEE 😁😁❤️
+</div>
+
+<script>
+const startBtn = document.getElementById('startBtn');
+const intro = document.getElementById('intro');
+const messages = document.getElementById('messages');
+const messageEls = document.querySelectorAll('.msg');
+const secondPage = document.getElementById('secondPage');
+const finalPage = document.getElementById('finalPage');
+
+// Request full screen on load
+function openFullscreen() {
+  if(document.documentElement.requestFullscreen){
+    document.documentElement.requestFullscreen();
+  } else if(document.documentElement.webkitRequestFullscreen){
+    document.documentElement.webkitRequestFullscreen();
+  }
+}
+
+// Hearts
+function spawnHeart(){
+  for(let i=0;i<3;i++){
+    const heart = document.createElement('div');
+    heart.className='floating-heart';
+    heart.textContent='💖';
+    heart.style.left=Math.random()*90+'vw';
+    heart.style.bottom='-20px';
+    heart.style.fontSize=(16+Math.random()*25)+'px';
+    heart.style.animationDuration=(5+Math.random()*5)+'s';
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),10000);
+  }
+}
+
+// Confetti hearts
+function spawnConfetti(){
+  const heart = document.createElement('div');
+  heart.className='confetti-heart';
+  heart.textContent='💖';
+  heart.style.left=Math.random()*100+'vw';
+  heart.style.top='-50px';
+  heart.style.fontSize=(18+Math.random()*20)+'px';
+  heart.style.animationDuration=(4+Math.random()*3)+'s';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),7000);
+}
+
+// Glitter
+function spawnGlitter(){
+  for(let i=0;i<5;i++){
+    const glitter = document.createElement('div');
+    glitter.className='glitter';
+    glitter.style.left=Math.random()*finalPage.offsetWidth+'px';
+    glitter.style.top=Math.random()*finalPage.offsetHeight+'px';
+    glitter.style.animationDuration=(1+Math.random()*1)+'s';
+    finalPage.appendChild(glitter);
+    setTimeout(()=>glitter.remove(),1500);
+  }
+}
+
+// Fade in messages
+function fadeInMessage(el){
+  el.style.display='block';
+  setTimeout(()=>{el.style.opacity=1},50);
+}
+
+// Start sequence
+startBtn.addEventListener('click',()=>{
+  openFullscreen();
+  intro.style.display='none';
+  messages.style.display='block';
+  let i=0;
+  function showNext(){
+    if(i<messageEls.length){
+      fadeInMessage(messageEls[i]);
+      spawnHeart();
+      i++;
+      setTimeout(showNext,6000);
+    } else {
+      setTimeout(()=>{
+        messages.style.display='none';
+        secondPage.style.display='block';
+        const heartInterval = setInterval(spawnHeart, 800);
+        setTimeout(()=>{
+          clearInterval(heartInterval);
+          secondPage.style.display='none';
+          finalPage.style.display='block';
+          // Infinite hearts, confetti, glitter
+          const finalHearts = setInterval(spawnHeart, 500);
+          const confettiInterval = setInterval(spawnConfetti, 300);
+          const glitterInterval = setInterval(spawnGlitter, 300);
+          // Auto close after 8s
+          setTimeout(()=>{
+            clearInterval(finalHearts);
+            clearInterval(confettiInterval);
+            clearInterval(glitterInterval);
+            window.close();
+          },8000);
+        },5000);
+      },1000);
+    }
+  }
+  showNext();
+});
+</script>
+
+</body>
+</html>
